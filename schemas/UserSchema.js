@@ -1,3 +1,5 @@
+'use strict';
+
 const { 
 	GraphQLObjectType, 
 	GraphQLID,
@@ -7,20 +9,9 @@ const {
 	GraphQLSchema
 } = require('graphql');
 
-const TODOs = [  
-  {
-    "id": 1446412739542,
-    "title": "Read emails",
-    "completed": false
-  },
-  {
-    "id": 1446412740883,
-    "title": "Buy orange",
-    "completed": true
-  }
-];
 
-const TodoType = new GraphQLObjectType({
+
+const UserType = new GraphQLObjectType({
 	name: 'todo',
 	fields: function () {
 	    return {
@@ -55,6 +46,4 @@ const queryType = new GraphQLObjectType({
   	}
 });
 
-module.exports = new GraphQLSchema({  
-  query: queryType
-});
+module.exports = UserType;

@@ -7,24 +7,17 @@ const {
 	graphql,
 	buildSchema
 } = require('graphql');
-const Schema = require('./schema');
+const User = require('./schemas/userSchema');
 
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { ObjectId } = require('mongodb');
-const db = require('./mongoUtil').getDb();
+const db = require('./utils/mongoUtils').getDb();
 
 const PORT = 3050;
 const COLLECTION = 'groups';
+const MONGOLAB_URI = 'mongodb://localhost/freezer_dev';
 
-const GROUP = mongoose.model('Group', {
-	id: mongoose.Schema.Types.ObjectId,
-	name: String,
-	active: Boolean,
-	users: Array
-})
-
-app.use(bodyParser.json());
+mongoose.connect(MONGOLAB_URI);
 
 const schema = buildSchema(`
 	type Query {
@@ -64,6 +57,11 @@ function getGroup(groupId, callback) {
 		});
 	})
 }
+
+let userRoutes = express.Router();
+require('./routers/userRoutes')(userRoutes);
+
+app.use('/api', userRoutes);
 
 app.use('/graphql', graphqlHTTP({
 	schema: schema,
