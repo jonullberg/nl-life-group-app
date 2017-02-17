@@ -1,0 +1,20 @@
+{
+  "name": "small-group-service",
+  "version": "1.0.0",
+  "description": "A service that creates and displays small groups",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jonathan.ullberg@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.2.0",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.18",
+    "mongoose": "^4.8.1",
+    "morgan": "^1.7.0"
+  }
+}
