@@ -45,23 +45,13 @@ const root = {
 	}
 };
 
-function getGroup(groupId, callback) {
-	MongoClient.connect(URL, function(err, db) {
-		if (err) {
-			console.log('Unable to connect to Mongo DB', err);
-			return 'Internal Server Error';
-		}
-		return getDocumentByID(db, COLLECTION, groupId, function (document) {
-			db.close();
-			callback(document['Test']);
-		});
-	})
-}
-
 let userRoutes = express.Router();
+let groupRoutes = express.Router();
+require('./routers/groupRoutes')(groupRoutes);
 require('./routers/userRoutes')(userRoutes);
 
 app.use('/api', userRoutes);
+app.use('/api', groupRoutes);
 
 app.use('/graphql', graphqlHTTP({
 	schema: schema,

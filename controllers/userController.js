@@ -1,6 +1,7 @@
 'use strict';
 
 const User = require('../models/UserModel');
+const { logError } = require('../utils/utilities');
 
 module.exports = {
 	createUser: function(req, res) {
@@ -48,9 +49,4 @@ module.exports = {
 	}
 }
 
-function logError(msg, err, res) {
-	console.log(msg, err);
-	return res.status(500).json({
-		'msg': 'Internal Server Error'
-	});
-}
+
