@@ -8,6 +8,6 @@ module.exports = function(router) {
 	router.use(bodyparser.json());
 
 	router.get(RESOURCE_NAME, controller.getAllUsers);
-	router.get(RESOURCE_NAME + '/:userId', controller.getUserById);
 	router.post(RESOURCE_NAME, controller.createUser);
+	router.get(RESOURCE_NAME + '/:userId', controller.getUserById);
 }
